@@ -4,11 +4,12 @@ const AuthService = require('../services/auth.service')
 const authService = new AuthService()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {privateKey} = require('../config/config')
+const {privateKey, receiverMail} = require('../config/config')
 const deleteProperties = require('../Utils/deleteProperties')
 const sendEmail = require('../Utils/setNodeMailer')
 const {url, urlPage} = require('../config/config')
 const boom = require('@hapi/boom')
+const setOrderMessage = require('../Utils/setOrderMsg')
 
 
 const controller = {
@@ -63,6 +64,22 @@ const controller = {
     req.user ? res.json({session: 'login'}) : res.json({session: 'logout'})
   },
 
+  sendOrder: async (req, res, next) => {
+    try {
+      //console.log('User: ', req.user)
+      //console.log('Body: ', req.body)
+      const {email, userName} = req.user
+      const {listProducts, totalProducts, totalPrice} = req.body
+      const msgOrder = setOrderMessage(listProducts, totalProducts, totalPrice)
+      //console.log(msgOrder)
+      const infoEmail = await sendEmail(receiverMail,`Nuevo Pedido de ${userName}, desde ${email}` , msgOrder)
+      console.log('message sent: ', infoEmail)
+      res.json({message: 'Successfull'})
+    } catch (error) {
+      next(error)
+    }
+  },
+
   recoveryPassword: async (req, res, next) => {
     try {
       const {email} = req.body
@@ -104,10 +121,10 @@ const controller = {
     try {
       const {name, email, location, phone, message} = req.body
       //console.log('message Received: ', req.body)
-      const infoEmail = await sendEmail('alexshady008.2@gmail.com',
+      const infoEmail = await sendEmail(receiverMail,
         `Nuevo mensaje de: ${name}, Email: ${email}, Telefono: ${phone}, Ubicación: ${location}`,
           `${message}`)
-      //console.log('message sent: ', infoEmail)
+      console.log('message sent: ', infoEmail)
       res.json({message: 'Successfull'})
     } catch (error) {
       next(error)

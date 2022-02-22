@@ -17,6 +17,10 @@ const productBrand = Joi.string()
 const carBrand = Joi.string()
 const carType = Joi.string()
 
+const listProducts = Joi.array()
+const totalProducts = Joi.number().integer()
+const totalPrice = Joi.number()
+
 
 const loginSchema = Joi.object({
   userName: userName.required(),
@@ -49,10 +53,17 @@ const updatePricesSchema = Joi.object({
   carType
 })
 
+const orderSchema = Joi.object({
+  listProducts: listProducts.required(),
+  totalProducts: totalProducts.required(),
+  totalPrice: totalPrice.required()
+})
+
 module.exports = {
   loginSchema,
   recoveryPassSchema,
   changePassSchema,
   updatePricesSchema,
-  contactSchema
+  contactSchema,
+  orderSchema
 }

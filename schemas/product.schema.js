@@ -1,6 +1,7 @@
 const Joi = require("joi")
 
 const id = Joi.number().integer().allow(null)
+const cod = Joi.string()
 const description = Joi.string()
 const price = Joi.number()
 const categoryId = Joi.number()
@@ -16,6 +17,7 @@ const getProductSchema = Joi.object({
 const createProductSchema = Joi.object({
   id,
   image,
+  cod: cod.required(),
   description: description.required(),
   price: price.required(),
   categoryId: categoryId.required(),
@@ -29,9 +31,11 @@ const productFilterSchema = Joi.object({
   productBrand: productBrand.allow(''),
   carBrand: carBrand.allow(''),
   carType: carType.allow(''),
+  productCod: cod.allow(''),
 })
 
 const updateProductSchema = Joi.object({
+  cod,
   description,
   price,
   categoryId,

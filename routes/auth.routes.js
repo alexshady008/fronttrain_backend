@@ -5,7 +5,7 @@ const multer = require('multer')
 const path = require('path')
 const validatorHandler = require('../middleware/validator.handler')
 const {getUserSchema, createUserSchema, confirmUserSchema} = require('../schemas/user.schema')
-const {loginSchema, recoveryPassSchema, changePassSchema, updatePricesSchema, contactSchema} = require('../schemas/auth.schema')
+const {loginSchema, recoveryPassSchema, changePassSchema, updatePricesSchema, contactSchema, orderSchema} = require('../schemas/auth.schema')
 const passport = require('passport')
 const checkRole = require('../middleware/checkRole.handler')
 
@@ -58,5 +58,10 @@ route.post('/contact',
 validatorHandler(contactSchema, 'body'),
 //passport.authenticate('local', {session:false} ),
 controller.contact)
+
+route.post('/order',
+validatorHandler(orderSchema, 'body'),
+passport.authenticate('jwt', {session: false}),
+controller.sendOrder)
 
 module.exports = route

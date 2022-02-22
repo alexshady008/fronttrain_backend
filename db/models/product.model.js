@@ -11,6 +11,10 @@ const productSchema = {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  cod: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   description: {
     type: DataTypes.STRING,
     allowNull: false

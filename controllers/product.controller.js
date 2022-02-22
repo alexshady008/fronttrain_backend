@@ -22,7 +22,7 @@ const controller = {
     try {
       const {offset, limit} = req.query
       //console.log('Req Query: ', req.query)
-      const {categoryId, productBrand, carBrand, carType} = req.body
+      const {categoryId, productBrand, carBrand, carType, productCod} = req.body
       //console.log('Req Body: ', req.body)
       const options = {
         attributes: productAtributes,
@@ -34,6 +34,7 @@ const controller = {
       if (productBrand!='') options.where.productBrand = productBrand
       if (carBrand!='') options.where.carBrand = carBrand
       if (carType!='') options.where.carType = carType
+      if (productCod!='') options.where.productCod = productCod
       console.log('Opciones: ', options)
       const products = await service.getAll(options)
       res.json(products)

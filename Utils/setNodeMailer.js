@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer')
-const hostMail =  'mail.alexshady.com' // 'mail.fronttrain.com.ar'
+const config = require('../config/config')
+const hostMail =  config.hostMail
 const portMail = 587
-const userMail = 'cheshirex@alexshady.com' // 'contacto@fronttrain.com.ar'
-const passMail = 'alexshady003' //'fronttrain003'
+const userMail = config.userMail
+const passMail = config.passMail
 
 const sendEmail = async (receivers, title, msg) => {
-
+  console.log(process.env.USER_MAIL)
   const transporter = nodemailer.createTransport({
     host: hostMail,
     port: 587,

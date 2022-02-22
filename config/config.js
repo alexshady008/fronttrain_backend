@@ -5,7 +5,11 @@ const config = {
   urlPage: process.env.URL_PAGE || 'http://localhost:3000',
   port: process.env.PORT || 4000,
   dbUrl: process.env.URL_DB,
-  privateKey: process.env.PRIVATE_KEY
+  privateKey: process.env.PRIVATE_KEY,
+  receiverMail: process.env.RECEIVER_MAIL || 'alexshady008.2@gmail.com',
+  hostMail: process.env.HOST_MAIL || 'mail.alexshady.com', // 'mail.fronttrain.com.ar'
+  userMail: process.env.USER_MAIL || 'test@alexshady.com',   //'cheshirex@alexshady.com' // 'contacto@fronttrain.com.ar'
+  passMail: process.env.PASS_MAIL || 'alexshady003' //'fronttrain003'
 }
 
 module.exports = config
