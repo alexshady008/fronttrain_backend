@@ -23,6 +23,9 @@ app.use(passport.initialize())
 require('./lIbs/localStrategy')
 require('./lIbs/jwtStrategy')
 
+//Home
+app.get('/', (req, res) => res.send('Hola Mundo'))
+
 //Routes
 mainRoutes(app)
 

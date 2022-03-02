@@ -7,6 +7,7 @@ const clientRoute = require('./client.routes')
 const categoryRoute = require('./category.routes')
 const orderRoute = require('./order.routes')
 
+
 const mainRoutes = (app) => {
   app.use('/api', route)
   route.use('/auth', authRoute)
