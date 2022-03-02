@@ -4,11 +4,11 @@ const url = config.dbUrl
 module.exports = {
   development: {
     url,
-    dialect: 'mysql'
+    dialect: 'postgres'
   },
   production: {
     url,
-    dialect: 'mysql',
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
         rejectUnauthorized: false

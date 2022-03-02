@@ -3,7 +3,7 @@ const {dbUrl, isProd} = require('../config/config')
 //const setupModel = require('../db/models/index.model')
 
 const options = {
-  dialect:'mysql',
+  dialect:'postgres',
   logging: isProd ? false : true
 }
 if (isProd){
