@@ -8,6 +8,15 @@ module.exports = {
   },
   production: {
     url,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
   }
 }
+
+
+// 13:30
+// 14:55

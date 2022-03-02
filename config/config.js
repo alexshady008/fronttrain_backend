@@ -4,7 +4,8 @@ const config = {
   url: process.env.URL,
   urlPage: process.env.URL_PAGE || 'http://localhost:3000',
   port: process.env.PORT || 4000,
-  dbUrl: process.env.URL_DB,
+  isProd: process.env.NODE_ENV === 'production',
+  dbUrl: process.env.DATABASE_URL,
   privateKey: process.env.PRIVATE_KEY,
   receiverMail: process.env.RECEIVER_MAIL || 'alexshady008.2@gmail.com',
   hostMail: process.env.HOST_MAIL || 'mail.alexshady.com', // 'mail.fronttrain.com.ar'
